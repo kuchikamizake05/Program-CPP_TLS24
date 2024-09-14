@@ -7,14 +7,17 @@ int main() {
     double num1, num2;
     char operation;
     
-    cout << "Masukkan operasi matematika (+, -, *, /, ^, s, c, t) " << endl;
-    cout << "(s untuk sin, c untuk cos, t untuk tan): ";
+    cout << "Masukkan operasi matematika (+, -, *, /, ^, s, c, t, l) " << endl;
+    cout << "(s untuk sin, c untuk cos, t untuk tan, l untuk log): ";
     cin >> operation;
     
     if (operation == 's' || operation == 'c' || operation == 't') {
         cout << "Masukkan sudut dalam derajat: ";
         cin >> num1;
         num1 = num1 * M_PI / 180.0; // Convert to radians
+    } else if (operation == 'l' || operation == 'L') {
+        cout << "Masukkan angka: ";
+        cin >> num1;
     } else {
         cout << "Masukkan angka pertama: ";
         cin >> num1;
@@ -62,10 +65,19 @@ int main() {
             if (cos(num1) != 0) {
                 result = tan(num1);
             } else {
-                cout << "Error: Tangent tak terdefinisi untuk sudut ini!" << endl;
+                cout << "Error: Tangen tak terdefinisi untuk sudut ini!" << endl;
                 return 1;
             }
             break;
+        case 'l':
+            if (num1 > 0) {
+                result = log(num1);  // Natural logarithm (base e)
+            } else {
+                cout << "Error: Logaritma tidak terdefinisi untuk bilangan selain positif!" << endl;
+                return 1;
+            }
+            break;
+            
         default:
             cout << "Error: Invalid operation!" << endl;
             return 1;
